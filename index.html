@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watchwise | Find where to stream movies and shows</title>
+  <meta name="description" content="Search any movie or show and see where to stream it, with release year, rating, runtime and a short description." />
+  <meta name="theme-color" content="#0e1522" />
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./" aria-label="Watchwise home">
+        <img src="logo.svg" alt="" width="36" height="36" />
+        <span class="brand-name">Watchwise</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Find what to watch, and where to stream it.</h1>
+      <p>Look up a movie or show by title, or browse by genre. Each result shows the year, rating, runtime, a short description and the services streaming it in the US.</p>
+    </section>
+
+    <section class="search-card" aria-label="Search">
+      <div class="tabs" role="tablist" aria-label="Search mode">
+        <button class="tab" role="tab" id="tab-title" data-tab="title" aria-selected="true" aria-controls="panel-title">By title</button>
+        <button class="tab" role="tab" id="tab-genre" data-tab="genre" aria-selected="false" aria-controls="panel-genre" tabindex="-1">By genre</button>
+      </div>
+
+      <div id="panel-title" role="tabpanel" aria-labelledby="tab-title" data-panel="title">
+        <form id="titleForm" class="search-form">
+          <label class="sr-only" for="titleInput">Movie or show title</label>
+          <input type="text" id="titleInput" placeholder="Search a movie or show title" autocomplete="off" required />
+          <label class="sr-only" for="titleType">Type</label>
+          <select id="titleType">
+            <option value="movie">Movies</option>
+            <option value="series">Shows</option>
+            <option value="both">Movies and shows</option>
+          </select>
+          <button type="submit" class="btn-primary">Search</button>
+        </form>
+      </div>
+
+      <div id="panel-genre" role="tabpanel" aria-labelledby="tab-genre" data-panel="genre" hidden>
+        <form id="genreForm" class="search-form">
+          <label class="sr-only" for="genreSelect">Genre</label>
+          <select id="genreSelect" required>
+            <option value="">Choose a genre</option>
+          </select>
+          <label class="sr-only" for="genreType">Type</label>
+          <select id="genreType">
+            <option value="movie">Movies</option>
+            <option value="series">Shows</option>
+          </select>
+          <button type="submit" class="btn-primary">Browse</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="titleResults" class="results" aria-live="polite" data-results="title"></section>
+
+    <section id="genreResults" class="results" aria-live="polite" data-results="genre" hidden></section>
+    <div class="load-more-row">
+      <button id="loadMoreBtn" class="btn-secondary" hidden>Load more</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <small>Streaming data from the <a href="https://rapidapi.com/movie-of-the-night-movie-of-the-night-default/api/streaming-availability/details" target="_blank" rel="noopener">Streaming Availability API</a>. Availability changes often, so check the service before you plan your night.</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
